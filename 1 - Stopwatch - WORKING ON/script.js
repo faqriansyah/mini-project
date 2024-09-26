@@ -1,12 +1,8 @@
-// const pause = document.getElementById("pause");
-// const play = document.getElementById("play");
-// const reset = document.getElementById("reset");
-// const lap = document.getElementById("lap");
 const stopwatch = document.getElementById("stopwatch");
 
 let time = [0, 0, 0];
 
-const play = setInterval(startTime, 1000);
+let play;
 
 function startTime() {
     time[2]++;
@@ -25,5 +21,24 @@ function startTime() {
     stopwatch.innerHTML = hours + ":" + minute + ":" + second;
 }
 
+function stopTime() {
+    clearInterval(play);
+}
+
+function resetTime() {
+    time[0] = [0];
+    time[1] = [0];
+    time[2] = [0];
+}
+
+document.getElementById("pause").addEventListener("click", () => {
+    stopTime();
+})
+
+document.getElementById("reset").addEventListener("click", () => {
+    resetTime();
+})
+
 document.getElementById("play").addEventListener("click", () => {
+    play = setInterval(startTime, 100);
 })
